@@ -1,307 +1,82 @@
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Zoo {
-
-    Animal[] animals;
+    Animal [] animals;
     String name;
     String city;
-    int nbrCages;
-
-    //constructor
-    public Zoo(String name, String city, int nbrCages) {
-        if(nbrCages >25) {
-            System.out.println("Error: nbrCages >25");
-            this.nbrCages = 25;
-        }else {
-            this.nbrCages=nbrCages;
-        }
-
-        animals = new Animal[nbrCages];
+    final int NBRCAGES=25;
+    int nbrAnimals;
+    public Zoo(String name, String city) {
+        animals = new Animal[NBRCAGES];
         this.name = name;
         this.city = city;
     }
-
-    public void displayZoo() {
-        System.out.println("Name: " + name);
-        System.out.println("Number of cages: " + nbrCages);
+    public Zoo(){};
+    public  void dispalyZoo(){
+        System.out.println("name"+this.name + "nbrCages"+this.NBRCAGES);
     }
-
     @Override
-    public String toString() {
-        return "Zoo{" +
-                "animals=" + Arrays.toString(animals) +
-                ", name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                ", nbrCages=" + nbrCages +
-                '}';
+    public String toString(){
+        return "name " + name + "city " + city + "nbCage " + NBRCAGES ;
     }
 
-    public Boolean addAnimal(Animal animal) {
-        boolean test=false;
-        for (int i = 0; i < nbrCages; i++) {
-            if (animals[i] == animal){
-                test=false;
-            }
+    public boolean addAnimal(Animal animal){
+        if(nbrAnimals == NBRCAGES)
+            return false;
+        else{
+            animals[nbrAnimals] = animal;
+            nbrAnimals++;
         }
-        for (int i=0 ; i<nbrCages; i++){
-          if (animals[i] == null ) {
-                animals[i] = animal;
-                test= true;
-                break;
-            }else{
-                test = false;
+        return true;
+
+
+    }
+    public int searchAnimal(Animal animal){
+        int index=-1;
+        for(int i=0;i<nbrAnimals;i++){
+            if (animals[i].name==animal.name){
+                return i;
+
             }
+
         }
+        return index;
+    }
+    public void displayAnimals(){
+        for(int i=0;i<nbrAnimals;i++){
+            System.out.println(animals[i]);
+        }
+    }
+    public boolean removeAnimal(Animal animal){
+        int index=searchAnimal(animal);
+        if(index==-1)
+            return false;
+        for(int i=index;i<nbrAnimals;i++){
+            animals[i]=animals[i+1];
+            animals[nbrAnimals]=null;
+        }
+        nbrAnimals--;
         return true;
     }
 
-    public void displayAnimals() {
-        for (int i=0 ; i<nbrCages; i++){
-            if (animals[i] != null) {
-                System.out.println(animals[i].toString());
-            }
-        }
-    }
-
-    public int searchAnimal(Animal animal) {
-
-        for(int i=0; i<nbrCages; i++) {
-            if(animals[i] != null && animals[i].name.equals(animal.name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-public boolean removeAnimal(Animal animal) {
-        boolean test=false;
-        for (int i=0 ; i<nbrCages; i++) {
-            if (animals[i] == animal) {
-                animals[i] = null;
-                test=true;
-                break;
-            }
-        }
-        return test;
-}
-public boolean isZooFull() {
-        int nbrAnimals=0;
-        for (Animal animal : animals) {
-            if (animal != null) {
-                nbrAnimals++;
-            }
-        }
-        if(nbrAnimals >= nbrCages) {
-            System.out.println(" Zoo is Full");
+    public boolean isZooFull() {
+        if (nbrAnimals==NBRCAGES) {
+            System.out.println("Zoo is full");
             return true;
-        }else {
-            System.out.println("Zoo is not Full");
+        }else if (nbrAnimals >= NBRCAGES) {
             return false;
         }
-}
-
-public Zoo comparerZoo(Zoo z1, Zoo z2) {
-        int nbrZ1=0;
-        int nbrZ2=0;
-        for(int i=0; i<25;i++){
-            if(i< z1.animals.length  &&z1.animals[i] !=null) {
-                nbrZ1++;
-            }
-            if(i< z2.animals.length && z2.animals[i] !=null) {
-                nbrZ2++;
-            }
+        else {
+            System.out.println("Zoo is not full yet");
+            return false;
         }
-        if (nbrZ1>nbrZ2) {
-            System.out.println(z1.name+" has more animals");
+    }
+    public Zoo compareZoo(Zoo z1, Zoo z2){
+        if(z1.nbrAnimals >z2.nbrAnimals){
             return z1;
-        } else if (nbrZ2>nbrZ1) {
-            System.out.println(z2.name+" has more animals");
+        } else if (z1.nbrAnimals <z2.nbrAnimals) {
             return z2;
-        } else {
-            System.out.println(z1.name+" and "+z2.name+" are equal");
-            return null;
+        }else {
+            return z1;
         }
+    }
 
 }
-
-
-}
-/*
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.Arrays;
-import java.util.Scanner;
-
-public class Zoo {
-
-    Animal[] animals;
-    String name;
-    String city;
-    int nbrCages;
-
-    //constructor
-    public Zoo(String name, String city, int nbrCages) {
-        animals = new Animal[nbrCages];
-        this.name = name;
-        this.city = city;
-        this.nbrCages = nbrCages;
-    }
-
-    public void displayZoo() {
-        System.out.println("Name: " + name);
-        System.out.println("Number of cages: " + nbrCages);
-    }
-
-    @Override
-    public String toString() {
-        return "Zoo{" +
-                "animals=" + Arrays.toString(animals) +
-                ", name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                ", nbrCages=" + nbrCages +
-                '}';
-    }
-
-    public Boolean addAnimal(Animal animal) {
-        boolean test=false;
-        for (int i = 0; i < nbrCages; i++) {
-            if (animals[i] == animal){
-                test=false;
-            }
-        }
-        for (int i=0 ; i<nbrCages; i++){
-            if (animals[i] == null ) {
-                animals[i] = animal;
-                test= true;
-                break;
-            }else{
-                test = false;
-            }
-        }
-        return true;
-    }
-
-    public void displayAnimals() {
-        for (int i=0 ; i<nbrCages; i++){
-            if (animals[i] != null) {
-                System.out.println(animals[i].toString());
-            }
-        }
-    }
-
-    public int searchAnimal(Animal animal) {
-
-        for(int i=0; i<nbrCages; i++) {
-            if(animals[i] != null && animals[i].name.equals(animal.name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public boolean removeAnimal(Animal animal) {
-        boolean test=false;
-        for (int i=0 ; i<nbrCages; i++) {
-            if (animals[i] == animal) {
-                animals[i] = null;
-                test=true;
-                break;
-            }
-        }
-        return test;
-    }
-
-
-}
-/*  prosit 2
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.Arrays;
-import java.util.Scanner;
-
-public class Zoo {
-
-    Animal[] animals;
-    String name;
-    String city;
-    int nbrCages;
-
-    //constructor
-    public Zoo(String name, String city, int nbrCages) {
-        animals = new Animal[nbrCages];
-        this.name = name;
-        this.city = city;
-        this.nbrCages = nbrCages;
-    }
-
-    public void displayZoo() {
-        System.out.println("Name: " + name);
-        System.out.println("Number of cages: " + nbrCages);
-    }
-
-    @Override
-    public String toString() {
-        return "Zoo{" +
-                "animals=" + Arrays.toString(animals) +
-                ", name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                ", nbrCages=" + nbrCages +
-                '}';
-    }
-
-    public Boolean addAnimal(Animal animal) {
-        boolean test=false;
-        for (int i = 0; i < nbrCages; i++) {
-            if (animals[i] == animal){
-                test=false;
-            }
-        }
-        for (int i=0 ; i<nbrCages; i++){
-          if (animals[i] == null ) {
-                animals[i] = animal;
-                test= true;
-                break;
-            }else{
-                test = false;
-            }
-        }
-        return true;
-    }
-
-    public void displayAnimals() {
-        for (int i=0 ; i<nbrCages; i++){
-            if (animals[i] != null) {
-                System.out.println(animals[i].toString());
-            }
-        }
-    }
-
-    public int searchAnimal(Animal animal) {
-
-        for(int i=0; i<nbrCages; i++) {
-            if(animals[i] != null && animals[i].name.equals(animal.name)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-public boolean removeAnimal(Animal animal) {
-        boolean test=false;
-        for (int i=0 ; i<nbrCages; i++) {
-            if (animals[i] == animal) {
-                animals[i] = null;
-                test=true;
-                break;
-            }
-        }
-        return test;
-}
-
-
-}
-
-   */
