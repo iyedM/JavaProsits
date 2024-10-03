@@ -1,6 +1,6 @@
 public class Zoo {
     Animal [] animals;
-    String name;
+    private String name;
     String city;
     final int NBRCAGES=25;
     int nbrAnimals;
@@ -15,11 +15,11 @@ public class Zoo {
     }
     @Override
     public String toString(){
-        return "name " + name + "city " + city + "nbCage " + NBRCAGES ;
+        return "{ name : " + name + " , city: " + city + " , nbCage:  " + NBRCAGES +"}";
     }
 
     public boolean addAnimal(Animal animal){
-        if(nbrAnimals == NBRCAGES)
+        if(isZooFull()==true)
             return false;
         else{
             animals[nbrAnimals] = animal;
@@ -77,6 +77,16 @@ public class Zoo {
         }else {
             return z1;
         }
+    }
+
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        if (name.isEmpty()){
+            System.out.println("Invalid Name");
+        }else
+            this.name = name;
     }
 
 }

@@ -1,7 +1,7 @@
 public class Animal {
     String family;
     String name;
-    int age;
+    private int age;
     boolean isMammal;
 
     //constructor
@@ -24,6 +24,17 @@ public class Animal {
     }
 
     public Animal(){};
+
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age){
+        if (age<0){
+            System.out.println("Invalid Age");
+        }else
+        this.age = age;
+    }
+
 
 }
 
