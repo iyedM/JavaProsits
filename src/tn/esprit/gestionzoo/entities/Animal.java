@@ -1,8 +1,10 @@
+package tn.esprit.gestionzoo.entities;
+
 public class Animal {
-    String family;
-    String name;
+    public String family;
+    public String name;
     private int age;
-    boolean isMammal;
+    public boolean isMammal;
 
     //constructor
 
@@ -15,7 +17,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
+        return "tn.esprit.gestionzoo.entities.Animal{" +
                 "family='" + family + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
@@ -29,7 +31,7 @@ public class Animal {
         return age;
     }
     public void setAge(int age){
-        if (age<0){
+        if (age<=0){
             System.out.println("Invalid Age");
         }else
         this.age = age;

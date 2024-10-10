@@ -1,7 +1,9 @@
+package tn.esprit.gestionzoo.entities;
+
 public class Zoo {
-    Animal [] animals;
+    public Animal[] animals;
     private String name;
-    String city;
+    public String city;
     final int NBRCAGES=25;
     int nbrAnimals;
     public Zoo(String name, String city) {
@@ -51,21 +53,28 @@ public class Zoo {
             return false;
         for(int i=index;i<nbrAnimals;i++){
             animals[i]=animals[i+1];
-            animals[nbrAnimals]=null;
         }
-        nbrAnimals--;
+        animals[nbrAnimals]=null;
+        this.nbrAnimals--;
         return true;
     }
 
+
+
+
+   /* public boolean isZooFull(){
+        return nbrAnimals == NBRCAGES;
+    }*/
+
     public boolean isZooFull() {
         if (nbrAnimals==NBRCAGES) {
-            System.out.println("Zoo is full");
+            System.out.println("tn.esprit.gestionzoo.entities.Zoo is full");
             return true;
         }else if (nbrAnimals >= NBRCAGES) {
             return false;
         }
         else {
-            System.out.println("Zoo is not full yet");
+            System.out.println("tn.esprit.gestionzoo.entities.Zoo is not full yet");
             return false;
         }
     }
@@ -80,10 +89,10 @@ public class Zoo {
     }
 
     public String getName(){
-        return name;
+        return name; // or we can use return this.name
     }
     public void setName(String name){
-        if (name.isEmpty()){
+        if (name.isEmpty()){  // we can use name.isBlank()
             System.out.println("Invalid Name");
         }else
             this.name = name;
