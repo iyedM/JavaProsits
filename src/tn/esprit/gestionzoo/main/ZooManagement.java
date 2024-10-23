@@ -3,32 +3,71 @@ package tn.esprit.gestionzoo.main;
 import tn.esprit.gestionzoo.entities.*;
 
 public class ZooManagement {
-    public static void main(String[] args) {
-        Animal animal= new Animal();
-        Zoo zoo= new Zoo();
-        animal.name="max";
-        animal.setAge(-5);
-        animal.family="chien";
-        animal.isMammal=true;
-        System.out.println(animal);
-        zoo.setName("belvedere");
-        zoo.city="tunis";
-        zoo.animals=new Animal[25];
-        System.out.println(zoo);
-        Animal tiger = new Animal( "tiger","felin",10,true);
-        Animal eagle = new Animal( "eagle","felin",10,true);
-        Animal lion = new Animal( "lion","felin",10,true);
 
-        Zoo zoo1 = new Zoo("belfidere","tunis");
-        zoo1.addAnimal(tiger);
-        zoo1.addAnimal(eagle);
-        zoo1.addAnimal(lion);
-        zoo1.displayAnimals();
-        zoo1.removeAnimal(tiger);
-        zoo1.displayAnimals();
-        //System.out.println(zoo1);
-        System.out.println(zoo1.toString());
-        System.out.println(zoo1.isZooFull());
+    public static void main(String[] args) {
+        Animal lion = new Animal();
+        lion.setName("Simba");
+        lion.setAge(8);
+        lion.setFamily("Cats");
+        lion.setMammal(true);
+
+        Zoo myZoo = new Zoo("Wildlife Park", "Ariana");
+        Zoo notMyZoo = new Zoo("WaterPark", "Siliana");
+
+
+        Animal dog = new Animal("Canine", "Snoopy", 2, true);
+
+
+        System.out.println(myZoo.addAnimal(lion));
+        System.out.println(myZoo.addAnimal(dog));
+
+        myZoo.displayAnimals();
+
+        System.out.println(myZoo.searchAnimal(dog));
+        Animal dog2 = new Animal("Canine", "lll", 2, true);
+        System.out.println(myZoo.searchAnimal(dog2));
+
+//           System.out.println(myZoo.removeAnimal(dog));
+        myZoo.displayAnimals();
+
+
+        System.out.println(myZoo);
+
+        myZoo.addAnimal(lion);
+        myZoo.addAnimal(dog);
+        myZoo.addAnimal(dog2);
+        myZoo.displayAnimals();
+
+
+        myZoo.setName("Belvedere Park");
+        Zoo notMyZoo1 = Zoo.comparerZoo(myZoo, notMyZoo);
+        System.out.println(notMyZoo1);
+
+        System.out.println("-------------------------------------------------------");
+        Aquatic aquatic = new Fish("Fish", "Sardine", 2, true, "Sea"); //il y a un erreur ici car aquatic on ne peut pas l'initialiser car elle est abstract, alors on va faire une classe Fish pour ne l'effacer pas
+        Terrestrial terrestrial = new Terrestrial("Panda", "Narla", 4, true, 2);
+        Dolphin dolphin = new Dolphin("Delphinidae", "Flipper", 5, true, "Ocean", 14.5f);
+        Penguin penguin = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 25.3f);
+
+
+        System.out.println(aquatic);
+        System.out.println(terrestrial);
+        System.out.println(dolphin);
+        System.out.println(penguin);
+
+
+
+        aquatic.swim();
+        dolphin.swim();
+        penguin.swim();
+
+        myZoo.addAquaticAnimal(dolphin);
+        myZoo.addAquaticAnimal(penguin);
+        myZoo.addAquaticAnimal(aquatic);
+        System.out.println("Profondeur maximale de nage des pingouins: " + myZoo.maxPenguinSwimmingDepth());
+        myZoo.displayNumberOfAquaticsByType();
+
+
     }
 
 }
