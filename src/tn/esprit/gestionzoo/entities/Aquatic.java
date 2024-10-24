@@ -13,7 +13,7 @@ public  non-sealed abstract class Aquatic extends Animal {
     }
 
 
-    public abstract void swim();
+    public abstract void  swim();
 
 
     @Override
@@ -23,16 +23,12 @@ public  non-sealed abstract class Aquatic extends Animal {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true; // Si les objets sont identiques, ils sont égaux
-        if (obj == null || getClass() != obj.getClass()) return false; // Si l'objet est null ou n'est pas de la même classe, ils ne sont pas égaux
-
-        Aquatic aquatic = (Aquatic) obj; // Conversion de l'objet en type Aquatic
-
-        // Comparaison des attributs name, age et habitat à l'aide des getters
-        return this.getName().equals(aquatic.getName()) &&
-                this.getAge() == aquatic.getAge() &&
-                this.habitat.equals(aquatic.habitat);
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+        if (obj instanceof Aquatic a)
+            return getName().equals(a.getName())&& habitat.equals(a.habitat)&&getAge()==a.getAge();
+        return false;
     }
-
-
 }

@@ -6,8 +6,8 @@ public class Zoo {
     private Animal[] animals;
     private String name, city;
     private int nbrAnimals;
-    Aquatic[] aquaticAnimals = new Aquatic[10];
-
+    Aquatic[] aquaticAnimals;
+    private int nbrAquaticAnimals;
     public Zoo() {
     }
 
@@ -15,6 +15,7 @@ public class Zoo {
         animals = new Animal[NUMBER_OF_CAGES];
         this.name = name;
         this.city = city;
+        aquaticAnimals= new Aquatic[10];
     }
 
     public static Zoo comparerZoo(Zoo z1, Zoo z2) {
@@ -110,57 +111,50 @@ public class Zoo {
     }
 
     public void addAquaticAnimal(Aquatic aquatic){
-        int counter=0;
-        for (int i = 0; i < aquaticAnimals.length; i++) {
-            if(aquaticAnimals[i]!=null){
-                counter++;
-            }
-        }
-        if (counter< aquaticAnimals.length) {
-            aquaticAnimals[counter] = aquatic;
-            System.out.println("Aquatic added Successfully");
-        }else
-            System.out.println("Aquatic not added");
+        aquaticAnimals[nbrAquaticAnimals] = aquatic;
+        nbrAquaticAnimals++;
+        System.out.println("Aquatic added successfully");
     }
 
-    public void displayAquaticAnimalsSwim() {
-        for (Aquatic aquatic : aquaticAnimals) {
-            if (aquatic != null) {
-                aquatic.swim();
-            }
-        }
+
+    public int getNbrAquaticAnimals() {
+        return nbrAquaticAnimals;
+    }
+    public void setNbrAquaticAnimals(int nbrAquaticAnimals) {
+        this.nbrAquaticAnimals = nbrAquaticAnimals;
+    }
+    public Aquatic[] getAquaticAnimals() {
+        return aquaticAnimals;
+    }
+    public void setAquaticAnimals(Aquatic[] aquaticAnimals) {
+        this.aquaticAnimals = aquaticAnimals;
     }
 
-    public float maxPenguinSwimmingDepth() {
-        float maxDepth = 0;
-        for (Aquatic aquatic : aquaticAnimals) {
-            if (aquatic instanceof Penguin) {
-                Penguin penguin = (Penguin) aquatic;
-                if (penguin.getSwimmingDepth() > maxDepth) { //on ajoute le getter dans penguin.java
-                    maxDepth = penguin.getSwimmingDepth();
+    public float maxPenguinSwimmingDepth(){
+        float max=0f;
+        for(int i=0;i<nbrAquaticAnimals;i++){
+            if (aquaticAnimals[i] instanceof Penguin p){
+                //Penguin p = (Penguin)aquaticAnimals[i];
+                if( p.getSwimmingDepth() > max){
+                    max =p.getSwimmingDepth();
                 }
             }
         }
-        return maxDepth;
+        return max;
     }
 
-    public void displayNumberOfAquaticsByType() {
-        int dCount = 0;
-        int pCount = 0;
-
-        for (Aquatic aquatic : aquaticAnimals) {
-            if (aquatic instanceof Dolphin) {
-                dCount++;
-            } else if (aquatic instanceof Penguin) {
-                pCount++;
-            }
+    public void displayNumberOfAquaticsByType(){
+        int nbrDolphin=0;
+        int nbrPenguin=0;
+        for(Aquatic i : aquaticAnimals){
+            if(i instanceof Penguin)
+                nbrPenguin++;
+            if (i instanceof Dolphin)
+                nbrDolphin++;
         }
-
-        System.out.println("Number of Dolphins: " + dCount);
-        System.out.println("Number of Penguins: " + pCount);
+        System.out.println("Nombre des penguins: "+nbrPenguin);
+        System.out.println("Nombre des dolphins: "+nbrDolphin);
     }
-
-
 
 
 }
