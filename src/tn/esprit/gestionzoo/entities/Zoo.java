@@ -2,7 +2,7 @@ package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
 
-    public static final int NUMBER_OF_CAGES = 25;
+    public static final int NUMBER_OF_CAGES = 3;
     private Animal[] animals;
     private String name, city;
     private int nbrAnimals;
@@ -59,18 +59,26 @@ public class Zoo {
         this.nbrAnimals = nbrAnimals;
     }
 
-    void displayZoo() {
+    public void displayZoo() {
         System.out.println("Name: " + name + ", City: " + city + ", N° Cages: " + NUMBER_OF_CAGES + " N° animals: " + nbrAnimals);
     }
 
-    public boolean addAnimal(Animal animal) {
-        if (searchAnimal(animal) != -1)
-            return false;
+    public void addAnimal(Animal animal) throws ZooFullException, InvalidAgeException{
+//        if (searchAnimal(animal) != -1)
+//            return false;
         if (isZooFull())
-            return false;
-        animals[nbrAnimals] = animal;
-        nbrAnimals++;
-        return true;
+            throw new ZooFullException("Zoo est Full");
+        if(animal.getAge()<0)
+            throw new InvalidAgeException("Invalid Age");
+        try {
+            animals[nbrAnimals] = animal;
+            nbrAnimals++;
+
+        }finally {
+            System.out.println("nombre d'animals: "+ nbrAnimals);
+
+        }
+        //return true;
     }
 
     public boolean removeAnimal(Animal animal) {

@@ -14,8 +14,24 @@ public class ZooManagement {
         Zoo myZoo = new Zoo("Wildlife Park", "Ariana");
 //        Zoo notMyZoo = new Zoo("WaterPark", "Siliana");
 //
-//
-//        Animal dog = new Animal("Canine", "Snoopy", 2, true);
+          Animal dog = new Animal("Canine", "Snoopy", 2, true);
+          Animal cat = new Animal("Cnaina","doopy", 3, true );
+          Animal eagle = new Animal("Eagle", "Snopy", -2, true );
+          Animal pig = new Animal("Pig", "Snop", 2, true );
+        try{
+          myZoo.addAnimal(dog);
+          myZoo.addAnimal(cat);
+          myZoo.addAnimal(eagle);
+          myZoo.addAnimal(pig);
+        }catch (ZooFullException e) {
+            e.getMessage();
+        }catch (InvalidAgeException e){
+            e.getMessage();
+        }
+        //finally {
+          //  myZoo.displayZoo();
+            //myZoo.displayAnimals();
+        //}
 //
 //
 //        System.out.println(myZoo.addAnimal(lion));
@@ -65,16 +81,17 @@ public class ZooManagement {
 //        System.out.println("Profondeur maximale de nage des pingouins: " + myZoo.maxPenguinSwimmingDepth());
 //        myZoo.displayNumberOfAquaticsByType();
 //
-        Dolphin dolphin = new Dolphin("Delphinidae", "Flipper", 5, true, "Ocean", 14.5f);
-        Penguin penguin = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 25.3f);
-        Penguin penguin2 = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 20f);
-
-        myZoo.addAquaticAnimal(dolphin);
-        myZoo.addAquaticAnimal(penguin);
-        myZoo.addAquaticAnimal(penguin2);
-
-        System.out.println(myZoo.maxPenguinSwimmingDepth());
-        myZoo.displayNumberOfAquaticsByType();
+//        Dolphin dolphin = new Dolphin("Delphinidae", "Flipper", 5, true, "Ocean", 14.5f);
+//        Penguin penguin = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 25.3f);
+//        Penguin penguin2 = new Penguin("Spheniscidae", "Skipper", 3, true, "Ocean", 20f);
+//
+//        myZoo.addAquaticAnimal(dolphin);
+//        myZoo.addAquaticAnimal(penguin);
+//        myZoo.addAquaticAnimal(penguin2);
+//
+//        System.out.println(myZoo.maxPenguinSwimmingDepth());
+//        myZoo.displayNumberOfAquaticsByType();
+//        myZoo.displayZoo();
 //        for(Aquatic aq: myZoo.getAquaticAnimals()){
 //            aq.swim();
 //        }
