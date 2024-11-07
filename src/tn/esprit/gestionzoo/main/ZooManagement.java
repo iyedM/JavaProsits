@@ -5,6 +5,23 @@ import tn.esprit.gestionzoo.entities.*;
 public class ZooManagement {
 
     public static void main(String[] args) {
+
+        //Prosit8
+        Aquatic aquatic = new Aquatic("fish", "hwita", 2, true, "ocean");
+        System.out.println("Testing Aquatic:");
+        aquatic.eatMeat(Food.MEAT);  // Attendu : Aquatic animal is eating meat.
+        aquatic.eatMeat(Food.PLANT); // Attendu : Aquatic animal cannot eat this food.
+        Terrestrial terrestrial = new Terrestrial();
+        System.out.println("\nTesting Terrestrial:");
+        terrestrial.eatMeat(Food.MEAT);       // Attendu : Terrestrial animal is eating meat.
+        terrestrial.eatPlant(Food.PLANT);     // Attendu : Terrestrial animal is eating plant.
+        terrestrial.eatPlantAndMeat(Food.BOTH); // Attendu : Terrestrial animal is eating both plant and meat.
+        terrestrial.eatPlant(Food.MEAT);
+
+
+
+        //end Prosit8
+
 //        Animal lion = new Animal();
 //        lion.setName("Simba");
 //        lion.setAge(8);
@@ -14,24 +31,26 @@ public class ZooManagement {
         Zoo myZoo = new Zoo("Wildlife Park", "Ariana");
 //        Zoo notMyZoo = new Zoo("WaterPark", "Siliana");
 //
-          Animal dog = new Animal("Canine", "Snoopy", 2, true);
-          Animal cat = new Animal("Cnaina","doopy", 3, true );
-          Animal eagle = new Animal("Eagle", "Snopy", -2, true );
-          Animal pig = new Animal("Pig", "Snop", 2, true );
-        try{
-          myZoo.addAnimal(dog);
-          myZoo.addAnimal(cat);
-          myZoo.addAnimal(eagle);
-          myZoo.addAnimal(pig);
-        }catch (ZooFullException e) {
-            e.getMessage();
-        }catch (InvalidAgeException e){
-            e.getMessage();
-        }
+        //prodit7
+//          Animal dog = new Animal("Canine", "Snoopy", 2, true);
+//          Animal cat = new Animal("Cnaina","doopy", 3, true );
+//          Animal eagle = new Animal("Eagle", "Snopy", -2, true );
+//          Animal pig = new Animal("Pig", "Snop", 2, true );
+//        try{
+//          myZoo.addAnimal(dog);
+//          myZoo.addAnimal(cat);
+//          myZoo.addAnimal(eagle);
+//          myZoo.addAnimal(pig);
+//        }catch (ZooFullException e) {
+//            e.getMessage();
+//        }catch (InvalidAgeException e){
+//            e.getMessage();
+//        }
         //finally {
           //  myZoo.displayZoo();
             //myZoo.displayAnimals();
         //}
+        //fin prosit7
 //
 //
 //        System.out.println(myZoo.addAnimal(lion));
